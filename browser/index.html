@@ -1,0 +1,57 @@
+<html>
+<head>
+<title>brnfkr</title>
+<script src="../core/brnfkr.js" ></script>
+<script>
+var tptr=0;
+function outputer(v){
+    document.getElementById("outpt").value+=v;
+}
+function inputer(){
+   return document.getElementById("outpt").value.charAt(tptr++);
+   
+}
+function runit(){
+   tptr=0;
+   var srccddiv = document.getElementById("srccd");
+   var inptdiv = document.getElementById("inpt");
+   var outptdiv = document.getElementById("outpt");
+    outptdiv.value="";
+	var brnfkr = new BrnFkr();
+   brnfkr.setIO(inputer,outputer);
+   brnfkr.exec(srccddiv.value,{},inptdiv.value,{write:outputer});
+}
+</script>
+</head>
+<body>
+<label>Source:</label>
+<textarea rows="6" cols="30" id="srccd" >
++++++ +++++
+[
+> +++++ ++
+> +++++ +++++
+> +++
+> +
+<<<< -
+]
+> ++ .
+> + .
++++++ ++ .
+.
++++ .
+> ++ .
+<< +++++ +++++ +++++ .
+> .
++++ .
+----- - .
+----- --- .
+> + .
+> .
+</textarea>
+<label>Input:</label>
+<textarea rows="3" cols="30" id="inpt" ></textarea>
+<label>Output:</label>
+<textarea rows="3" cols="30" id="outpt" ></textarea>
+<input type="button" value="Run" onclick="runit()" />
+</body>
+</html>
